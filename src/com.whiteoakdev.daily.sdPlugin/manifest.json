@@ -1,0 +1,49 @@
+{
+	"SDKVersion": 2,
+	"Author": "Michael Whitaker",
+	"CodePath": "app.html",
+	"Description": "A simple daily timetracker for the Elgato Stream Deck.",
+	"Name": "Stream Deck Daily Timetracker",
+	"Icon": "actions/template/assets/action",
+	"URL": "https://github.com/Mantic/streamdeck-daily-timetracker",
+	"Version": "0.1.0",
+	"Software": {
+		"MinimumVersion": "5.0"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "10.11"
+		},
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Category": "White Oak Development",
+	"CategoryIcon": "actions/template/assets/actionimage",
+	"Actions": [
+		{
+			"Icon": "actions/template/assets/actionimage",
+			"Name": "Example Action",
+			"Controllers": ["Keypad", "Encoder"],
+			"Encoder": {
+				"layout": "$B1",
+				"TriggerDescription": {
+					"Rotate": "Describe the rotation",
+					"Push": "Describe the encoder push",
+					"Touch": "Describe the touch",
+					"LongTouch": "Describe the long touch"
+				}
+			},
+			"States": [
+				{
+					"Image": "actions/template/assets/action"
+				}
+			],
+			"Tooltip": "This is an example tooltip",
+			"UUID": "com.whiteoakdev.daily.action",
+			"PropertyInspectorPath": "actions/template/property-inspector/inspector.html"
+		}
+	]
+}
