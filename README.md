@@ -8,3 +8,9 @@
 
 ## Features
 
+## Attributions
+
+Time management icons created by _mia elysia_
+Marker icons created by Freepik
+Add icons created by Pixel perfect
+
