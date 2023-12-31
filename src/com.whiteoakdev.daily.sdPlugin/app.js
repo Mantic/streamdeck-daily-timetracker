@@ -11,6 +11,18 @@ $SD.onConnected(({ actionInfo, appInfo, connection, messageType, port, uuid }) =
 	console.log('Stream Deck connected!');
 });
 
+$SD.on("sendToPlugin", (event)=> {
+	console.log("Received sendToPlugin event!", event);
+})
+
+log.onSendToPlugin((e) => {
+	console.log("Log onSendToPlugin: ", e);
+	if(e.payload == "BOB") {
+		$SD.showOk(e.context);
+		// window.showDirectoryPicker();
+	}
+});
+
 log.onKeyDown(({ action, context, device, event, payload }) => {
 	console.log('Log: keyDown',
 	{	action:action, 

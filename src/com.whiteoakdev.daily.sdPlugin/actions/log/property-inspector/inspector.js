@@ -7,15 +7,17 @@ $PI.onConnected((jsn) => {
     const {payload, context} = actionInfo;
     const {settings} = payload;
 
-    Utils.setFormValue(settings, form);
+    console.log(jsn);
 
-    form.addEventListener(
-        'input',
-        Utils.debounce(150, () => {
-            const value = Utils.getFormValue(form);
-            $PI.setSettings(value);
-        })
-    );
+    // Utils.setFormValue(settings, form);
+
+    // form.addEventListener(
+    //     'input',
+    //     Utils.debounce(150, () => {
+    //         const value = Utils.getFormValue(form);
+    //         $PI.setSettings(value);
+    //     })
+    // );
 });
 
 $PI.onDidReceiveGlobalSettings(({payload}) => {
@@ -31,7 +33,7 @@ window.sendToInspector = (data) => {
 };
 
 document.querySelector('#open-external').addEventListener('click', () => {
-    window.open('../../../external.html');
+    // window.open('../../../external.html');
 });
 
 
@@ -62,35 +64,65 @@ document.querySelector('#open-external').addEventListener('click', () => {
  * You can use the code below to activate the tabs (`activateTabs` and `clickTab` are required)
  */
 
-function activateTabs(activeTab) {
-    const allTabs = Array.from(document.querySelectorAll('.tab'));
-    let activeTabEl = null;
-    allTabs.forEach((el, i) => {
-        el.onclick = () => clickTab(el);
-        if(el.dataset?.target === activeTab) {
-            activeTabEl = el;
-        }
-    });
-    if(activeTabEl) {
-        clickTab(activeTabEl);
-    } else if(allTabs.length) {
-        clickTab(allTabs[0]);
-    }
+async function openFolder() {
+    console.log("Opening folder...");
+    // sendValueToPlugin('selectFolder', 'log')
+    window.showDirectoryPicker();
+    // $PI.sendToPlugin("BOB")
 }
 
-function clickTab(clickedTab) {
-    const allTabs = Array.from(document.querySelectorAll('.tab'));
-    allTabs.forEach((el, i) => el.classList.remove('selected'));
-    clickedTab.classList.add('selected');
-    activeTab = clickedTab.dataset?.target;
-    allTabs.forEach((el, i) => {
-        if(el.dataset.target) {
-            const t = document.querySelector(el.dataset.target);
-            if(t) {
-                t.style.display = el == clickedTab ? 'block' : 'none';
-            }
-        }
-    });
-}
+// function sendValueToPlugin(value, param) {
 
-activateTabs();
+//     // say the websocket connection is saved in the variable 'websocket'
+//     if (websocket) {
+//         // compile our JSON object.
+
+//         const json = {
+//                 "action": "com.example.tutorial.action1",
+//                 "event": "sendToPlugin",
+//                 "context": "", // as received from the 'connectElgatoStreamDeckSocket' callback
+//                 "payload": {
+//                     // here we can use ES6 object-literals to use the  'param' parameter as a JSON key. In our example this resolves to {'myIdentifier': <value>}
+//                     [param] : value;  
+//                 }
+//          };
+//          // send the json object to the plugin
+//          // please remember to 'stringify' the object first, since the websocket
+//          // just sends plain strings.
+//          websocket.send(JSON.stringify(json));
+//     }
+
+// }
+
+// function activateTabs(activeTab) {
+//     const allTabs = Array.from(document.querySelectorAll('.tab'));
+//     let activeTabEl = null;
+//     allTabs.forEach((el, i) => {
+//         el.onclick = () => clickTab(el);
+//         if(el.dataset?.target === activeTab) {
+//             activeTabEl = el;
+//         }
+//     });
+//     if(activeTabEl) {
+//         clickTab(activeTabEl);
+//     } else if(allTabs.length) {
+//         clickTab(allTabs[0]);
+//     }
+// }
+
+// function clickTab(clickedTab) {
+//     const allTabs = Array.from(document.querySelectorAll('.tab'));
+//     allTabs.forEach((el, i) => el.classList.remove('selected'));
+//     clickedTab.classList.add('selected');
+//     activeTab = clickedTab.dataset?.target;
+//     allTabs.forEach((el, i) => {
+//         if(el.dataset.target) {
+//             const t = document.querySelector(el.dataset.target);
+//             if(t) {
+//                 t.style.display = el == clickedTab ? 'block' : 'none';
+//             }
+//         }
+//     });
+// }
+
+// activateTabs();
